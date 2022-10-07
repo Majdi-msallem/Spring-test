@@ -4,7 +4,7 @@ pipeline{
         stages {
             stage ('Hello') {
                 steps {
-                    echo 'Hello World test commit 4'
+                    echo 'Hello World test commit 5'
                 }
             }
             stage('Checkout GIT ') {
