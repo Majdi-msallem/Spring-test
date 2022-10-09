@@ -1,0 +1,24 @@
+properties([pipelineTriggers([githubPush()])])
+pipeline{
+    agent any 
+    
+        stages {
+            stage ('Hello') {
+                steps {
+                    echo 'Hello World test ngrok'
+                }
+            }
+            stage('Checkout GIT ') {
+                steps {
+                    echo 'Pulling ...';
+                    git branch : 'master',
+                    url : 'https://github.com/Majdi-msallem/Spring-test.git';
+                }
+            }
+            stage ('Testing maven'){
+                steps{
+                    sh """ mvn --version"""
+                } 
+            }
+        }
+}
