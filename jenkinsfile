@@ -5,7 +5,7 @@ pipeline{
         stages {
             stage ('Hello') {
                 steps {
-                    echo 'Hello World test ngrok 2'
+                    echo 'Hello World test ngrok 2 '
                 }
             }
             stage('Checkout GIT ') {
