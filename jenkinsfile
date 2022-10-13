@@ -1,11 +1,7 @@
 properties([pipelineTriggers([githubPush()])])
 pipeline{
     agent any 
-    environment {
-    registry = "majdimsallem/candidate"
-        registryCredential='dockerhub_id'
-        dockerImage=''
-    }
+
         stages {
             stage ('Hello') {
                 steps {
@@ -35,13 +31,7 @@ pipeline{
                 sh 'mvn install'
             }
         }
-        stage('Building our image') { 
-            steps { 
-                script { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
-                }
-            } 
-        }
+     
          
         
         }
