@@ -18,7 +18,7 @@ pipeline{
                 }
             }
      
-           stages {
+   
         stage('git clone') {
             steps {
                git branch: 'master', 
@@ -26,7 +26,7 @@ pipeline{
         
             }
         }
-        }
+        
        stage('MVN CLEAN'){
             steps {
                 sh 'mvn clean'
