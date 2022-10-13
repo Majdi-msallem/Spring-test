@@ -27,7 +27,7 @@ pipeline{
         }
              stage('MVN INSTALL') {
             steps {
-                sh 'mvn -Dplugin=install help:describe'
+                sh 'mvn install -f'
             }
         }
         stage('Building our image') { 
