@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 pipeline{
     agent any 
             environment {
-    registry = "majdimsallem/Candidate"
+    registry = "majdimsallem/test"
         registryCredential='dockerhub_id'
         dockerImage=''
     }
