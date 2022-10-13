@@ -12,12 +12,12 @@ pipeline{
                 steps {
                     echo 'Pulling ...';
                     git branch : 'master',
-                    url : 'https://github.com/Majdi-msallem/Spring-test.git'';
+                    url : 'https://github.com/Majdi-msallem/Spring-test.git/';
                 }
             }
         stage('git clone') {
             steps {
-               git branch: 'master', url: 'https://github.com/Majdi-msallem/Spring-test.git''
+               git branch: 'master', url: 'https://github.com/Majdi-msallem/Spring-test.git/'
             }
         }
         
