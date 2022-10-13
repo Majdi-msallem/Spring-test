@@ -13,16 +13,16 @@ pipeline{
             stage('Checkout GIT ') {
                 steps {
                     echo 'Pulling ...';
-                    git branch : 'master',
-                    url : 'https://github.com/Majdi-msallem/Spring-test.git/';
+                    git branch : 'main',
+                    url : 'https://github.com/iheeb9/microservice-cicd.git';
                 }
             }
      
    
         stage('git clone') {
             steps {
-               git branch: 'master', 
-               url: 'https://github.com/Majdi-msallem/Spring-test.git/'
+               git branch: 'main', 
+               url: 'https://github.com/iheeb9/microservice-cicd.git'
         
             }
         }
