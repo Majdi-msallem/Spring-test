@@ -2,8 +2,12 @@ properties([pipelineTriggers([githubPush()])])
 pipeline{
     agent any 
           tools { 
-        maven "M2_HOME"
-        
+        maven "M2_HOME" 
+        }
+        environment {
+    registry = "majdimsallem/test"
+        registryCredential='dockerhub_id'
+        dockerImage=''
     }
         stages {
             stage('Checkout GIT ') {
@@ -14,12 +18,51 @@ pipeline{
                 }
             }
      
-             stage('MVN Version') {
+           stages {
+        stage('git clone') {
             steps {
-                sh 'mvn -version'
+               git branch: 'master', 
+               url: 'https://github.com/Majdi-msallem/Spring-test.git/'
+        
             }
         }
-      
+        }
+       stage('MVN CLEAN'){
+            steps {
+                sh 'mvn clean'
+            }
+        }
+
+       
+             stage('MVN INSTALL') {
+            steps {
+                sh 'mvn install'
+                sh 'mvn -Dplugin=install help:describe'
+
+            }
+        }
+         
+         stage('Building our image') { 
+            steps { 
+                script { 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                }
+            } 
+        }
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+            }
+        } 
+        stage('Cleaning up') { 
+            steps { 
+                sh "docker rmi $registry:$BUILD_NUMBER" 
+            }
+        } 
          
         
         }
