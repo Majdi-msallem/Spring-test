@@ -10,17 +10,7 @@ pipeline{
                     url : 'https://github.com/Majdi-msallem/Spring-test.git/';
                 }
             }
-        stage('git clone') {
-            steps {
-               git branch: 'master', url: 'https://github.com/Majdi-msallem/Spring-test.git/'
-            }
-        }
-        
-            stage('MVN CLEAN'){
-            steps {
-                sh 'mvn clean'
-            }
-        }
+     
              stage('MVN Version') {
             steps {
                 sh 'mvn -version'
